@@ -1,0 +1,9 @@
+@function rem($px) {
+    @return $px;
+}
+
+@function path($path) {
+    @return url($base_url + $path);
+}
+
+

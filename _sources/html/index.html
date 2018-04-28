@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Superhero Cheesecake</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+
+    <base href="/static/<%=version%>/" />
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body style="margin: 0; padding: 0;">
+
+    <div id="application">
+        <div class="region region-main js-region-main"></div>
+    </div>
+
+    <%template id="pages/home" src="templates/pages/home.html"%>
+
+    <!-- JS files -->
+    <script src="js/vendor.bundle.js"></script>
+    <script src="js/main.bundle.js"></script>
+</body>
+</html>

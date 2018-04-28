@@ -1,0 +1,47 @@
+{
+    "keep-releases": 3,
+    "url": "http://projectname.local.shcc.nl",
+    "static" : "../../public/static/",
+    "sass": {
+		"src": "../../_sources/css",
+		"dest": "../../public/static/[version]/css",
+        "entry": "*.scss"
+	},
+    "html": {
+        "src": "../../_sources/html",
+        "dest": "../../public/"
+    },
+    "templates": {
+        "src": "../../_sources/html/templates",
+        "dest": "../../_sources/data/templates"
+    },
+    "temp": {
+        "src": "../../_temp",
+        "dest": "../../_temp"
+    },
+    "js": {
+        "src": "../../_sources/js",
+        "dest": "../../public/static/[version]/js",
+        "entry": "main.js",
+		"output": "main.bundle.js",
+		"alias": {
+			"underscore": "lodash"
+		}
+    },
+    "images": {
+        "src": "../../_sources/assets/img/originals",
+        "dest": "../../_sources/assets/img/optimized"
+    },
+    "assets": {
+        "src": "../../_sources/assets",
+        "dest": "../../public/static/[version]/assets"
+    },
+    "data": {
+        "src": "../../_sources/data",
+        "dest": "../../public/static/[version]/data"
+    },
+    "fonts": {
+        "src": "../../_sources/fonts",
+        "dest": "../../public/static/[version]/fonts"
+    }
+}
