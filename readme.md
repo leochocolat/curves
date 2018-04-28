@@ -1,3 +1,4 @@
 # Superhero Cheesecake Boilerplate V3: Frontend
 
-TBD
+1. npm i
+2. npm run develop

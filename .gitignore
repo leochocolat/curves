@@ -12,6 +12,7 @@
 
 #### Local only files
 *.js.map
+vendor-manifest.json
 
 #### Mac system files
 .DS_Store
