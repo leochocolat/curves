@@ -38,6 +38,13 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
 tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'remove-old-releases']});
 
 /**
+ * Other tasks
+ */
+
+gulp.task('optimize-images', require(path.resolve('tasks/develop/optimize-images'))(gulp, plugins, config, version));
+
+
+/**
  * Utils
  */
 function tasks(options) {
