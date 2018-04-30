@@ -5,7 +5,7 @@ var Superhero = require('@shcc/superhero-js');
 var ApplicationRouter = require('routers/ApplicationRouter');
 var ApplicationView = require('views/ApplicationView');
 
-var namespace = Superhero.createNameSpace('com.salvatore');
+var namespace = Superhero.createNameSpace('com.projectname');
 
 namespace.applicationRouter = new ApplicationRouter();
 namespace.applicationView = new ApplicationView({el: document.getElementById('application')});
