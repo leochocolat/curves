@@ -1,0 +1,62 @@
+=======
+.npm
+
+#### Contains user generated content
+/public/content/uploads/*
+!/public/content/uploads/.gitkeep
+/public/content/generated/*
+!/public/content/generated/.gitkeep
+
+#### Builds
+/public/static/local
+
+#### Local only files
+*.js.map
+vendor-manifest.json
+
+#### Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.AppleSingle
+
+#### Windows system files
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+#### SublimeText project files
+*.sublime-workspace
+/storage/*.key
+
+#### PHPStorm files
+.idea/
+
+#### SASS Ignores - "Sassy CSS" http://sass-lang.com/
+*.sass-cache
+
+#### Large binary files
+*.mov
+*.mp4
+*.fla
+*.swf
+
+#### Node modules
+node_modules
+npm-debug.log
