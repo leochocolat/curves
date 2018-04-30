@@ -3,7 +3,8 @@
   "author": "Superhero Cheesecake",
   "scripts": {
     "develop": "cd _tools/build && gulp develop --buildno local",
-    "release": "cd _tools/build && gulp release"
+    "release": "cd _tools/build && gulp release",
+    "optimize-images": "cd _tools/build && gulp optimize-images"
   },
   "devDependencies": {
     "@shcc-tooling/eslint-config": "^1.2.0",

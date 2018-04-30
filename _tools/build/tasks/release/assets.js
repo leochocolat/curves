@@ -2,11 +2,10 @@ var path = require('path');
 
 module.exports = function(gulp, plugins, config) {
     return function() {
-        var dest = config.assets.dest;
-        var src = config.assets.src;
+        gulp.src([path.join(config.images.src, '/**/*.{png,jpg,jpeg}'), '!' + config.assets.img_src, '!' + path.join(config.assets.img_src, '/**/*')], {base: config.assets.src})
+            .pipe(gulp.dest(config.assets.dest));
 
-        gulp.src(path.join(src, '/**/*'), {base: src})
-            .pipe(gulp.dest(dest));
-
+        gulp.src([path.join(config.assets.img_src, '/**/*'), '!' + config.assets.img_src + '/tinypng-sigs'], {base: config.assets.img_src})
+            .pipe(gulp.dest(config.assets.img_dest));
     };
 };

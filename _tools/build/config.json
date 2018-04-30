@@ -28,12 +28,14 @@
 		}
     },
     "images": {
-        "src": "../../_sources/assets/img/originals",
-        "dest": "../../_sources/assets/img/optimized"
+        "src": "../../_sources/assets/img",
+        "dest": "../../_sources/assets/img/_optimized"
     },
     "assets": {
         "src": "../../_sources/assets",
-        "dest": "../../public/static/[version]/assets"
+        "dest": "../../public/static/[version]/assets",
+        "img_src": "../../_sources/assets/img/_optimized",
+        "img_dest": "../../public/static/[version]/assets/img"
     },
     "data": {
         "src": "../../_sources/data",
