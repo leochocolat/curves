@@ -1,11 +1,11 @@
 require('@shcc/gsap-core');
 require('@shcc/environment');
 
-var Superhero = require('@shcc/superhero-js');
-var ApplicationRouter = require('routers/ApplicationRouter');
-var ApplicationView = require('views/ApplicationView');
+const Superhero = require('@shcc/superhero-js');
+const ApplicationRouter = require('routers/ApplicationRouter');
+const ApplicationView = require('views/ApplicationView');
 
-var namespace = Superhero.createNameSpace('com.projectname');
+const namespace = Superhero.createNameSpace('com.projectname');
 
 namespace.applicationRouter = new ApplicationRouter();
 namespace.applicationView = new ApplicationView({el: document.getElementById('application')});

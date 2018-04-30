@@ -1,5 +1,5 @@
-var _ = require('underscore');
-var Superhero = require('@shcc/superhero-js');
+const _ = require('underscore');
+const Superhero = require('@shcc/superhero-js');
 
 module.exports = Superhero.LayoutView.extend({
 
@@ -8,7 +8,7 @@ module.exports = Superhero.LayoutView.extend({
     },
 
     ui: {
-        
+
     },
 
     events: {
@@ -28,7 +28,7 @@ module.exports = Superhero.LayoutView.extend({
     _start: function() {
 
         Superhero.history.start({pushState: true});
-        
+
     },
 
     _globalClickHandler: function(e) {

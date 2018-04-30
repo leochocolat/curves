@@ -1,5 +1,5 @@
-var Superhero = require('@shcc/superhero-js');
-var HomeView = require('views/pages/HomeView');
+const Superhero = require('@shcc/superhero-js');
+const HomeView = require('views/pages/HomeView');
 
 module.exports = Superhero.Router.extend({
 
