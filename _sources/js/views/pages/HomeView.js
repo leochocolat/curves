@@ -1,6 +1,6 @@
-var Superhero = require('@shcc/superhero-js');
-var TweenLite = require('gsap/TweenLite');
-var TimelineLite = require('gsap/TimelineLite');
+const Superhero = require('@shcc/superhero-js');
+const TweenLite = require('gsap/TweenLite');
+const TimelineLite = require('gsap/TimelineLite');
 
 module.exports = Superhero.View.extend({
 
