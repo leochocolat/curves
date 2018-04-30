@@ -9,6 +9,7 @@ module.exports = function(gulp, plugins, config) {
             open: false,
             logLevel: 'ignore',
             notify: false,
+            ghostMode: false,
             socket: {
                 domain: ip.address() + ':3000'
             },

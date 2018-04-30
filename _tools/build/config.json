@@ -11,9 +11,8 @@
         "src": "../../_sources/html",
         "dest": "../../public/"
     },
-    "templates": {
-        "src": "../../_sources/html/templates",
-        "dest": "../../_sources/data/templates"
+    "lang": {
+        "src": "../../_sources/lang"
     },
     "temp": {
         "src": "../../_temp",

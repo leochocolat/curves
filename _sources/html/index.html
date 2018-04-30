@@ -6,14 +6,14 @@
     <title>Superhero Cheesecake</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
 
-    <base href="/static/<%=version%>/" />
+    <base href="/static/{{version}}/" />
 
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body style="margin: 0; padding: 0;">
 
-    <div id="application">
+    <div id="application" data-locale="{{locale}}">
         <div class="region region-main js-region-main"></div>
     </div>
 
