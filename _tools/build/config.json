@@ -29,12 +29,12 @@
     },
     "images": {
         "src": "../../_sources/assets/img",
-        "dest": "../../_sources/assets/img/_optimized"
+        "dest": "../../_sources/assets/img/.optimized"
     },
     "assets": {
         "src": "../../_sources/assets",
         "dest": "../../public/static/[version]/assets",
-        "img_src": "../../_sources/assets/img/_optimized",
+        "img_src": "../../_sources/assets/img/.optimized",
         "img_dest": "../../public/static/[version]/assets/img"
     },
     "data": {

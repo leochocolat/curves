@@ -8,7 +8,7 @@ htmlrender.addTemplate('template',
         '<%include src="{{src}}"%>'+
     '</script>');
 
-module.exports = function (gulp, plugins, config, version) {
+module.exports = function (gulp, config, version) {
     return function () {
         var src = config.html.src;
         var dest = config.html.dest;
