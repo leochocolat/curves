@@ -37,8 +37,8 @@ This boilerplate includes straightforward multilanguage support. Basically every
 3. This folder will contain a localized version of the site HTML but will share the rest of the site's code.
 
 ## Optimizing assets
-1. Throw your images (folders containing images is also fine) into *_sources/img*.
+1. Throw your images (folders containing images is also fine) into *_sources/assets/img*.
 2. Optimize your images using TinyPNG by running `npm run optimize-images`.
-3. Observe your images being optimized and saved into the *_sources/assets/img/_optimized* folder.
+3. Observe your images being optimized and saved into the hidden *_sources/assets/img/.optimized* folder.
 4. The *develop* task will copy all your images into the *public* folder, first unoptimized versions, second optimized versions.
-5. **Optimizing images costs money** so don't optimize when it's not needed. 
+5. **Optimizing images costs money** so don't optimize when it's not needed.

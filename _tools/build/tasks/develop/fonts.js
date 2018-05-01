@@ -1,6 +1,6 @@
 var path = require('path');
 
-module.exports = function(gulp, plugins, config) {
+module.exports = function(gulp, config) {
     return function() {
         var src = config.fonts.src;
         var dest = config.fonts.dest;

@@ -1,7 +1,7 @@
 var browserSync = require('browser-sync').get('server');
 var ip = require('ip');
 
-module.exports = function(gulp, plugins, config) {
+module.exports = function(gulp, config) {
     return function() {
         browserSync.init({
             proxy: config.url,

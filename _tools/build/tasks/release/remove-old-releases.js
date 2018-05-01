@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var del = require('del');
 
-module.exports = function (gulp, plugins, config) {
+module.exports = function (gulp, config) {
     return function () {
         var folders = getFolders(config.static).sort();
         if (folders.length > config['keep-releases']) {

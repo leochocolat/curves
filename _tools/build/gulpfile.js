@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var fs = require('fs');
 var path = require('path');
-var plugins = require('gulp-load-plugins')();
 var minimist = require('minimist');
 var gulpSync = require('gulp-sync')(gulp);
 var browserSync = require('browser-sync').create('server');
@@ -41,7 +40,7 @@ tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', '
  * Other tasks
  */
 
-gulp.task('optimize-images', require(path.resolve('tasks/develop/optimize-images'))(gulp, plugins, config, version));
+gulp.task('optimize-images', require(path.resolve('tasks/develop/optimize-images'))(gulp, config, version));
 
 
 /**
@@ -54,7 +53,7 @@ function tasks(options) {
     for (var i = 0, len = options.tasks.length; i < len; i++) {
         task = options.tasks[i];
         name = options.type + ':' + task;
-        gulp.task(name, require(path.resolve('tasks', options.type, task))(gulp, plugins, config, version));
+        gulp.task(name, require(path.resolve('tasks', options.type, task))(gulp, config, version));
         tasks.push(name);
     }
 
