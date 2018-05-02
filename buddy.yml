@@ -2,7 +2,7 @@
   trigger_mode: "MANUAL"
   ref_name: "develop"
   ref_type: "BRANCH"
-  target_site_url: "${site.url}"
+  target_site_url: "${site_url}"
   actions:
   - action: "Build frontend"
     type: "BUILD"
@@ -22,9 +22,9 @@
     type: "SFTP"
     input_type: "BUILD_ARTIFACTS"
     local_path: "/"
-    remote_path: "${upload.path}"
-    login: "${upload.username}"
-    host: "${upload.host}"
+    remote_path: "${upload_path}"
+    login: "${upload_username}"
+    host: "${upload_host}"
     port: "22"
     env_key: "id_rsa"
     authentication_mode: "ENV_KEY"
@@ -36,5 +36,4 @@
     - "/package*"
     - "/readme.md"
     - ".gitignore"
-
 
