@@ -1,0 +1,6 @@
+{
+    "globals": {
+        "__dirname": true
+    },
+    "extends": "@shcc-tooling"
+}

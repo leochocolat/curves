@@ -1,8 +1,8 @@
-const Superhero = require('@shcc/superhero-js');
-const TweenLite = require('gsap/TweenLite');
-const TimelineLite = require('gsap/TimelineLite');
+import Superhero from '@shcc/superhero-js';
+import TweenLite from 'gsap/TweenLite';
+import TimelineLite from 'gsap/TimelineLite';
 
-module.exports = Superhero.View.extend({
+export default Superhero.View.extend({
 
     className: 'page page-home',
     template: 'pages/home',

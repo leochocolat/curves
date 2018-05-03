@@ -1,7 +1,7 @@
-const _ = require('underscore');
-const Superhero = require('@shcc/superhero-js');
+import _ from 'underscore';
+import Superhero from '@shcc/superhero-js';
 
-module.exports = Superhero.LayoutView.extend({
+export default Superhero.LayoutView.extend({
 
     regions: {
         main: '.js-region-main'

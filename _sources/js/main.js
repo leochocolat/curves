@@ -1,9 +1,9 @@
-require('@shcc/gsap-core');
-require('@shcc/environment');
+import '@shcc/gsap-core';
+import '@shcc/environment';
 
-const Superhero = require('@shcc/superhero-js');
-const ApplicationRouter = require('routers/ApplicationRouter');
-const ApplicationView = require('views/ApplicationView');
+import Superhero from '@shcc/superhero-js';
+import ApplicationRouter from 'routers/ApplicationRouter';
+import ApplicationView  from 'views/ApplicationView';
 
 const namespace = Superhero.createNameSpace('com.projectname');
 

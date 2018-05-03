@@ -1,7 +1,7 @@
-const Superhero = require('@shcc/superhero-js');
-const HomeView = require('views/pages/HomeView');
+import Superhero from '@shcc/superhero-js';
+import HomeView from 'views/pages/HomeView';
 
-module.exports = Superhero.Router.extend({
+export default Superhero.Router.extend({
 
     routes: {
         '': '_home',
