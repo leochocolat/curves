@@ -26,7 +26,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
     gulp.watch(path.join(config.fonts.src, '/**/*'), ['develop:fonts']);
     gulp.watch(path.join(config.data.src, '/**/*.{json,xml}'), ['develop:data', 'develop:javascript-app']);
     gulp.watch(path.join(config.js.src, '/**/*.{js,frag,vert,glsl}'), ['develop:javascript-app']);
-    gulp.watch(path.join(config.html.src, '**/*.html'), ['develop:html']);
+    gulp.watch(path.join(config.html.src, '**/*.{html,hbs}'), ['develop:html']);
     gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html']);
     gulp.watch(path.join(config.temp.src, '/**/*.{json,xml}'), ['develop:javascript-app']);
 }});
