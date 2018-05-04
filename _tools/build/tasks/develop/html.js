@@ -1,6 +1,7 @@
 var path = require('path');
 var handlebars = require('gulp-compile-handlebars');
 var fs = require('fs');
+var browserSync = require('browser-sync').get('server');
 
 module.exports = function (gulp, config, version) {
     return function () {
@@ -53,6 +54,8 @@ module.exports = function (gulp, config, version) {
                     console.error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
                 .pipe(gulp.dest(dest));
+
+            browserSync.reload();
         }
 
     };
