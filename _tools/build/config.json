@@ -12,6 +12,7 @@
         "dest": "../../public/"
     },
     "lang": {
+        "default_locale" : "en-gb",
         "src": "../../_sources/lang"
     },
     "temp": {
