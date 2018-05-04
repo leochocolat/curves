@@ -1,12 +1,6 @@
 var path = require('path');
-var htmlrender = require('gulp-htmlrender');
-var template = require('gulp-template');
+var handlebars = require('gulp-compile-handlebars');
 var fs = require('fs');
-
-htmlrender.addTemplate('template',
-    '<script type="text/template" id="{{id}}">'+
-        '<%include src="{{src}}"%>'+
-    '</script>');
 
 module.exports = function (gulp, config, version) {
     return function () {
@@ -42,13 +36,19 @@ module.exports = function (gulp, config, version) {
 
         function renderHTML(locale, dest, templateData) {
 
-            gulp.src(html, {read:false})
-                .pipe(htmlrender.render())
-                .pipe(template(Object.assign({}, templateData, {locale:locale}), {
-                    evaluate:    /\{\{(.+?)\}\}/g,
-                    interpolate: /\{\{(.+?)\}\}/g,
-                    escape:      /\{\{-(.+?)\}\}/g
-                }))
+            var options = {
+                helpers: {
+                    template:(context, options) => {
+                        if(!context.hash.id || !context.hash.src) return '';
+                        let templateContents = `{{> ${context.hash.src}}}`;
+                        return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
+                    }
+                },
+                batch: [path.resolve(src)]
+            }
+
+            gulp.src(html)
+                .pipe(handlebars(Object.assign({}, templateData, {locale:locale}), options))
                 .on('error', function(e){
                     console.error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
