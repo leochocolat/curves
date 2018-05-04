@@ -16,14 +16,14 @@ module.exports = function (gulp, config, version) {
         //Create templatedata object and add version variable
         var baseTemplateData = Object.assign({}, masterContents, {version:version});
 
-        //Render default HTML template
-        renderHTML('', dest, baseTemplateData);
+        var locales = [];
 
         //Look for other locales files, loop through them and export html templates for each
         fs.readdir(config.lang.src, function(err, items) {
             items.forEach(function(item) {
                 if(!item.match(/\.json$/gi) || item.match(/master\.json/gi)) return;
                 var locale = item.replace('.json', '');
+                locales.push(locale);
                 var localeDest = (locale) ? dest + locale : dest;
 
                 var localeContents = JSON.parse(fs.readFileSync(config.lang.src + '/' + item));
@@ -48,15 +48,20 @@ module.exports = function (gulp, config, version) {
                 batch: [path.resolve(src)]
             }
 
-            gulp.src(html)
-                .pipe(handlebars(Object.assign({}, templateData, {locale:locale}), options))
+            gulp.src(src + '/*.html')
+                .pipe(handlebars(Object.assign({}, templateData, {locale:locale, locales:locales}), options))
                 .on('error', function(e){
                     console.error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
                 .pipe(gulp.dest(dest));
 
-            browserSync.reload();
+
         }
+
+        //Render default HTML template
+        renderHTML(config.lang.default_locale, dest, baseTemplateData);
+
+        browserSync.reload();
 
     };
 
