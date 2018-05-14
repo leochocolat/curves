@@ -28,9 +28,6 @@ module.exports = function(config) {
                 {test: /\.glsl$/, loader: 'webpack-glsl-loader'}
             ],
         },
-        externals: {
-            'bowser': 'bowser'
-        },
         plugins: [
             new webpack.DllReferencePlugin({
                 context: '.',
