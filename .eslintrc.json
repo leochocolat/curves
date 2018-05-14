@@ -1,6 +1,13 @@
 {
+    "env": {
+        "es6": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "globals": {
-        "__dirname": true
+        "__dirname": true,
+        "THREE": true
     },
     "extends": "@shcc-tooling"
 }
