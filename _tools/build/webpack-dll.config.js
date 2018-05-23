@@ -23,8 +23,7 @@ module.exports = function(config) {
         module: {
             rules: [
                 {
-                    test: /\.(js)$/,
-                    exclude: /node_modules/,
+                    test: /\.(js)$/,                    
                     use: ['babel-loader']
                 },
                 {test: /\.glsl$/, loader: 'webpack-glsl-loader'},
