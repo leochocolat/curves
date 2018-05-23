@@ -30,10 +30,7 @@ module.exports = function(config) {
                 {test: /\.glsl$/, loader: 'webpack-glsl-loader'}
             ],
         },
-        devtool: 'cheap-source-map',
-        externals: {
-            'bowser': 'bowser'
-        },
+        devtool: 'cheap-source-map',        
         plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,

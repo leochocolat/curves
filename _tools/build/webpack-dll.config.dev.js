@@ -22,12 +22,15 @@ module.exports = function(config) {
         },
         module: {
             rules: [
+                {
+                    test: /\.(js)$/,
+                    exclude: /node_modules/,
+                    use: ['babel-loader']
+                },
+                {test: /\.glsl$/, loader: 'webpack-glsl-loader'},
                 {test: /backbone\.js$/, loader: 'imports-loader?define=>false'}
-            ],
-        },
-        externals: {
-            'bowser': 'bowser'
-        },
+            ]
+        },        
         plugins: [
             new webpack.DllPlugin({
                 name: '[name]',
