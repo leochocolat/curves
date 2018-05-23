@@ -3,7 +3,6 @@ var fs = require('fs');
 var path = require('path');
 var minimist = require('minimist');
 var gulpSync = require('gulp-sync')(gulp);
-var browserSync = require('browser-sync').create('server');
 
 
 /**
