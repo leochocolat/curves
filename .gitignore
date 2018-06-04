@@ -48,6 +48,9 @@ $RECYCLE.BIN/
 #### PHPStorm files
 .idea/
 
+#### VS Code files
+.vscode
+
 #### SASS Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
 
@@ -56,6 +59,8 @@ $RECYCLE.BIN/
 *.mp4
 *.fla
 *.swf
+
+#### Project Specific:
 
 #### Node modules
 node_modules
