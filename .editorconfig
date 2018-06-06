@@ -10,7 +10,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 # Indentation override for all sources
-[*.{js,scss,twig,html}]
+[*.{js,scss,twig,html,hbs}]
 charset = utf-8
 indent_style = space
 indent_size = 4
