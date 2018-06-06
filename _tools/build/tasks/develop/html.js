@@ -1,67 +1,59 @@
-var path = require('path');
-var handlebars = require('gulp-compile-handlebars');
-var fs = require('fs');
-var browserSync = require('browser-sync').get('server');
+const path = require('path');
+const handlebars = require('gulp-compile-handlebars');
+const fs = require('fs');
+const browserSync = require('browser-sync').get('server');
 
-module.exports = function (gulp, config, version) {
-    return function () {
-        var src = config.html.src;
-        var dest = config.html.dest;
 
-        var html = path.join(src + '/index.html');
+module.exports = function(gulp, config, version) {
+    return function() {
+        
+        const src = config.html.src;
+        const dest = config.html.dest;
 
-        //Load in master language file!
-        var masterContents = JSON.parse(fs.readFileSync(config.lang.src + '/master.json'));
+        const entry = src + config.html.entry;
 
-        //Create templatedata object and add version variable
-        var baseTemplateData = Object.assign({}, masterContents, {version:version});
+        function getMaster() {
+            return JSON.parse(fs.readFileSync(config.lang.src + '/master.json')); //TODO: retrieve from config
+        }
 
-        var locales = [];
+        function getTranslations() {
+            const files =  fs.readdirSync(config.lang.src);
+            let translations = {};
+            files.forEach((file) => {
+                if (!file.match(/\.json$/gi) || file.match(/master\.json/gi)) return;
+                let locale = file.replace('.json', '');
+                let translation = JSON.parse(fs.readFileSync(config.lang.src + '/' + file));
+                translation.locale = locale;
+                translations[locale] = translation;
+            });
 
-        //Look for other locales files, loop through them and export html templates for each
-        fs.readdir(config.lang.src, function(err, items) {
-            items.forEach(function(item) {
-                if(!item.match(/\.json$/gi) || item.match(/master\.json/gi)) return;
-                var locale = item.replace('.json', '');
-                locales.push(locale);
-                var localeDest = (locale) ? dest + locale : dest;
+            return translations;
+        }
 
-                var localeContents = JSON.parse(fs.readFileSync(config.lang.src + '/' + item));
+        const translations = getTranslations();
+        const data = {};
 
-                //Merge locale contents with master file, so it falls back
-                var templateData = Object.assign({}, baseTemplateData, localeContents);
+        const handlebarsOptions = {
+            helpers: {
+                template: (context) => {
+                    if(!context.hash.id || !context.hash.src) return '';
+                    let templateContents = `{{> ${context.hash.src}}}`;
+                    return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
+                }
+            },
+            batch: [path.resolve(src)]
+        };
 
-                renderHTML(locale, localeDest, templateData);
-            })
-        })
-
-        function renderHTML(locale, dest, templateData) {
-
-            var options = {
-                helpers: {
-                    template:(context, options) => {
-                        if(!context.hash.id || !context.hash.src) return '';
-                        let templateContents = `{{> ${context.hash.src}}}`;
-                        return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
-                    }
-                },
-                batch: [path.resolve(src)]
-            }
-
+        Object.keys(translations).forEach((locale) => {
             gulp.src(src + '/*.html')
-                .pipe(handlebars(Object.assign({}, templateData, {locale:locale, locales:locales}), options))
+                .pipe(handlebars(Object.assign({}, data, translations[locale]), handlebarsOptions))
                 .on('error', function(e){
                     console.error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
-                .pipe(gulp.dest(dest));
+                .pipe(gulp.dest(dest + '/' + locale)); //TODO: this could be done better
+        });
 
-
-        }
-
-        //Render default HTML template
-        renderHTML(config.lang.default_locale, dest, baseTemplateData);
-
-        browserSync.reload();
+        
 
     };
 

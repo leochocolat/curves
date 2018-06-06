@@ -10,6 +10,10 @@
 #### Builds
 /public/static/local
 
+#### Node modules
+node_modules
+npm-debug.log
+
 #### Local only files
 *.js.map
 vendor-manifest.json
@@ -61,7 +65,3 @@ $RECYCLE.BIN/
 *.swf
 
 #### Project Specific:
-
-#### Node modules
-node_modules
-npm-debug.log
