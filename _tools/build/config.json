@@ -9,8 +9,7 @@
 	},
     "html": {
         "src": "../../_sources/html",
-        "dest": "../../public/",
-        "entry": "index.html"
+        "dest": "../../public/"
     },
     "lang": {
         "default_locale" : "en-gb",
