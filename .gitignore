@@ -10,6 +10,10 @@
 #### Builds
 /public/static/local
 
+#### Node modules
+node_modules
+npm-debug.log
+
 #### Local only files
 *.js.map
 vendor-manifest.json
@@ -48,6 +52,9 @@ $RECYCLE.BIN/
 #### PHPStorm files
 .idea/
 
+#### VS Code files
+.vscode
+
 #### SASS Ignores - "Sassy CSS" http://sass-lang.com/
 *.sass-cache
 
@@ -57,6 +64,4 @@ $RECYCLE.BIN/
 *.fla
 *.swf
 
-#### Node modules
-node_modules
-npm-debug.log
+#### Project Specific:

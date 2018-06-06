@@ -13,7 +13,7 @@
     },
     "lang": {
         "default_locale" : "en-gb",
-        "src": "../../_sources/lang"
+        "src": "../../_sources/lang"        
     },
     "temp": {
         "src": "../../_temp",

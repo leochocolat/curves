@@ -1,68 +1,84 @@
-var path = require('path');
-var handlebars = require('gulp-compile-handlebars');
-var fs = require('fs');
-var browserSync = require('browser-sync').get('server');
+const path = require('path');
+const handlebars = require('gulp-compile-handlebars');
+const fs = require('fs');
+const browserSync = require('browser-sync').get('server');
 
-module.exports = function (gulp, config, version) {
-    return function () {
-        var src = config.html.src;
-        var dest = config.html.dest;
 
-        var html = path.join(src + '/index.html');
+module.exports = function(gulp, config, version) {
+    return function() {
+        
+        const src = config.html.src;
+        const dest = config.html.dest;        
 
-        //Load in master language file!
-        var masterContents = JSON.parse(fs.readFileSync(config.lang.src + '/master.json'));
+        const handlebarsOptions = {
+            helpers: {
+                template: (context) => {
+                    if (!context.hash.id || !context.hash.src) return '';
+                    let templateContents = `{{> ${context.hash.src}}}`;
+                    return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
+                }
+            },
+            batch: [path.resolve(src)]
+        };
 
-        //Create templatedata object and add version variable
-        var baseTemplateData = Object.assign({}, masterContents, {version:version});
+        function renderHTML(locale, templateData, dest) { //TODO: rename dest
 
-        var locales = [];
-
-        //Look for other locales files, loop through them and export html templates for each
-        fs.readdir(config.lang.src, function(err, items) {
-            items.forEach(function(item) {
-                if(!item.match(/\.json$/gi) || item.match(/master\.json/gi)) return;
-                var locale = item.replace('.json', '');
-                locales.push(locale);
-                var localeDest = (locale) ? dest + locale : dest;
-
-                var localeContents = JSON.parse(fs.readFileSync(config.lang.src + '/' + item));
-
-                //Merge locale contents with master file, so it falls back
-                var templateData = Object.assign({}, baseTemplateData, localeContents);
-
-                renderHTML(locale, localeDest, templateData);
-            })
-        })
-
-        function renderHTML(locale, dest, templateData) {
-
-            var options = {
-                helpers: {
-                    template:(context, options) => {
-                        if(!context.hash.id || !context.hash.src) return '';
-                        let templateContents = `{{> ${context.hash.src}}}`;
-                        return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
-                    }
-                },
-                batch: [path.resolve(src)]
-            }
+            //Last variables to add
+            templateData.version = version; 
+            templateData.locale = locale;
+            templateData.lang = locale.replace(/^([a-z]{2})-.*/gi, '$1');
 
             gulp.src(src + '/*.html')
-                .pipe(handlebars(Object.assign({}, templateData, {locale:locale, locales:locales}), options))
+                .pipe(handlebars(templateData, handlebarsOptions))
                 .on('error', function(e){
                     console.error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
-                .pipe(gulp.dest(dest));
-
-
+                .pipe(gulp.dest(dest)); 
         }
 
-        //Render default HTML template
-        renderHTML(config.lang.default_locale, dest, baseTemplateData);
+        function getMaster() {
+            return JSON.parse(fs.readFileSync(config.lang.src + '/master.json')); //TODO: retrieve from config
+        }
+
+        function getTranslations(master) {
+            const files =  fs.readdirSync(config.lang.src);
+            let translations = {};
+            files.forEach((file) => {
+                if (!file.match(/\.json$/gi) || file.match(/master\.json/gi)) return;
+                let locale = file.replace('.json', '');
+                let jsonData = JSON.parse(fs.readFileSync(config.lang.src + '/' + file));                                
+                translations[locale] = Object.assign({}, master, jsonData);
+            });
+
+            return translations;
+        }
+
+        function getData() {
+            const files =  fs.readdirSync(config.data.src);
+            let data = {};
+            files.forEach((file) => {
+                if (!file.match(/\.json$/gi)) return;
+                let name = file.replace('.json', '');
+                let jsonData = JSON.parse(fs.readFileSync(config.data.src + '/' + file));                
+                data[name] = jsonData;
+            });
+
+            return data;
+        }
+
+        const master = getMaster();
+        const translations = getTranslations(master);
+        const data = getData();       
+
+        //Render translations
+        Object.keys(translations).forEach((locale) => {
+            renderHTML(locale, Object.assign({}, translations[locale], {data: data}), dest + '/' + locale);
+        });
+
+        //Render the master language
+        renderHTML(config.lang.default_locale, Object.assign({}, getMaster(), {data: data}), dest);        
 
         browserSync.reload();
-
     };
 
 };
