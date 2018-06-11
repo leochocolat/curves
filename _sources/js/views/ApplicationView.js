@@ -34,7 +34,7 @@ export default Superhero.LayoutView.extend({
     _globalClickHandler: function(e) {
 
         e.preventDefault();
-        Superhero.history.loadUrl(e.delegateTarget.pathname, {trigger: true});
+        Superhero.history.navigate(e.delegateTarget.pathname, {trigger: true});
 
     }
 
