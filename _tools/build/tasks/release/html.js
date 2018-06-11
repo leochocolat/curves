@@ -31,7 +31,7 @@ module.exports = function(gulp, config, version) {
             gulp.src(src + '/*.html')
                 .pipe(handlebars(templateData, handlebarsOptions))
                 .on('error', function(e){
-                    console.error('Error rendering template for locale ' + locale + ': ' + e.message);
+                    throw new Error('Error rendering template for locale ' + locale + ': ' + e.message);
                 })
                 .pipe(gulp.dest(dest)); 
         }
