@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var util = require('gulp-util');
 
 module.exports = function(gulp, config) {
     return function(callback) {
@@ -9,9 +8,9 @@ module.exports = function(gulp, config) {
 
         var webpackConfig = require('../../webpack.config.js')(config);
         webpack(webpackConfig, function(error, stats) {
-            if (error) throw new util.PluginError('webpack', error);
+            if (error) throw Error('webpack', error);
             var statsErrors = stats.toString('errors-only');
-            if (statsErrors) util.log('[webpack]', statsErrors);
+            if (statsErrors) console.log('[webpack]', statsErrors);
             callback();
         });
     };
