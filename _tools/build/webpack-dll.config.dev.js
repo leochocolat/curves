@@ -22,10 +22,25 @@ module.exports = function(config) {
         },
         module: {
             rules: [
-                {test: /\.glsl$/, loader: 'webpack-glsl-loader'},
-                {test: /backbone\.js$/, loader: 'imports-loader?define=>false'}
+                {
+                    test: /\.(js)$/,
+                    exclude: /node_modules\/(?!(modulename))/,
+                    use: [{
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            presets: [
+                                'env'
+                            ],
+                            plugins: [
+                                'es6-promise'
+                            ]
+                        }                      
+                    }]
+                },
+                {test: /\.glsl$/, use: 'webpack-glsl-loader'}                
             ]
-        },        
+        },          
         plugins: [
             new webpack.DllPlugin({
                 name: '[name]',

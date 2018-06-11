@@ -23,9 +23,20 @@ module.exports = function(config) {
                 {
                     test: /\.(js)$/,
                     exclude: /node_modules/,
-                    use: ['babel-loader']
+                    use: [{
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            presets: [
+                                'env'
+                            ],
+                            plugins: [
+                                'es6-promise'
+                            ]
+                        }                      
+                    }] 
                 },
-                {test: /\.glsl$/, loader: 'webpack-glsl-loader'}
+                {test: /\.glsl$/, use: 'webpack-glsl-loader'}
             ],
         },
         plugins: [
