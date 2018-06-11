@@ -2,9 +2,9 @@
   "name": "Boilerplate-V3-Frontend",
   "author": "Superhero Cheesecake",
   "scripts": {
-    "develop": "cd _tools/build && gulp develop --buildno local",
+    "develop": "cd _tools/build && gulp develop --buildno local --silent",
     "release": "cd _tools/build && gulp release",
-    "optimize-images": "cd _tools/build && gulp optimize-images"
+    "optimize-images": "cd _tools/build && gulp optimize-images --silent"
   },
   "devDependencies": {
     "@shcc-tooling/eslint-config": "^1.2.0",
@@ -25,9 +25,9 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-sync": "^0.1.4",
     "gulp-tinypng-compress": "^1.2.1",
-    "gulp-util": "^3.0.8",
     "imports-loader": "^0.7.1",
     "ip": "^1.1.5",
+    "log-symbols": "^2.2.0",
     "minimist": "^1.2.0",
     "strip-debug-loader": "^1.0.0",
     "webpack": "^4.6.0",

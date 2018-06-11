@@ -1,13 +1,14 @@
 var webpack = require('webpack');
-var util = require('gulp-util');
+const logSymbols = require('log-symbols');
 
 module.exports = function(gulp, config) {
     return function(callback) {
         var webpackConfig = require('../../webpack-dll.config.dev.js')(config);
         webpack(webpackConfig, function(error, stats) {
-            if (error) throw new util.PluginError('webpack', error);
+            if (error) throw new Error('webpack error', error);
             var statsErrors = stats.toString('errors-only');
-            if (statsErrors) util.log('[webpack]', statsErrors);
+            if (statsErrors) console.log(logSymbols.error, statsErrors);
+            console.log(logSymbols.success, 'DLL JavaScript succesfully generated');
             callback();
         });
     };
