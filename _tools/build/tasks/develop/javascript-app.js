@@ -10,9 +10,9 @@ module.exports = function(gulp, config) {
 
         var webpackConfig = require('../../webpack.config.dev.js')(config);
         webpack(webpackConfig, function(error, stats) {
-            if (error) throw Error('webpack error', error);
+            if (error) throw new Error('webpack error', error);
             var statsErrors = stats.toString('errors-only');
-            if (statsErrors) log('[webpack]', statsErrors);
+            if (statsErrors) console.log('[webpack]', statsErrors);
             console.log(logSymbols.success, 'Application JavaScript succesfully generated');
             browserSync.reload();
             callback();
