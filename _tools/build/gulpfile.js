@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var minimist = require('minimist');
 var gulpSync = require('gulp-sync')(gulp);
+const logSymbols = require('log-symbols');
 
 
 /**
@@ -28,6 +29,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
     gulp.watch(path.join(config.html.src, '**/*.{html,hbs}'), ['develop:html']);
     gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html']);
     gulp.watch(path.join(config.temp.src, '/**/*.{json,xml}'), ['develop:javascript-app']);
+    console.log(logSymbols.success, 'Watching... (CTRL+C to end)');
 }});
 
 /**

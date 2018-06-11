@@ -22,10 +22,6 @@ module.exports = function(config) {
         },
         module: {
             rules: [
-                {
-                    test: /\.(js)$/,                    
-                    use: ['babel-loader']
-                },
                 {test: /\.glsl$/, loader: 'webpack-glsl-loader'},
                 {test: /backbone\.js$/, loader: 'imports-loader?define=>false'}
             ]

@@ -2,6 +2,7 @@ const path = require('path');
 const handlebars = require('gulp-compile-handlebars');
 const fs = require('fs');
 const browserSync = require('browser-sync').get('server');
+const logSymbols = require('log-symbols');
 
 
 module.exports = function(gulp, config, version) {
@@ -78,6 +79,7 @@ module.exports = function(gulp, config, version) {
         //Render the master language
         renderHTML(config.lang.default_locale, Object.assign({}, getMaster(), {data: data}), dest);        
 
+        console.log(logSymbols.success, 'HTML templates succesfully rendered');
         browserSync.reload();
     };
 

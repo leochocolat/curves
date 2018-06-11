@@ -4,6 +4,7 @@ var browserSync = require('browser-sync').get('server');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+const logSymbols = require('log-symbols');
 
 module.exports = function(gulp, config) {
     return function() {
@@ -19,5 +20,7 @@ module.exports = function(gulp, config) {
             .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 11', 'safari >= 8', 'ios 10', 'android 4']}))
             .pipe(gulp.dest(dest))
             .pipe(browserSync.stream());
+
+        console.log(logSymbols.success, 'CSS succesfully generated');
     };
 };
