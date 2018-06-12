@@ -29,7 +29,7 @@ module.exports = function(gulp, config, version) {
             templateData.locale = locale;
             templateData.lang = locale.replace(/^([a-z]{2})-.*/gi, '$1');
 
-            gulp.src(src + '/*.html')
+            gulp.src(src + '/**/*.html')
                 .pipe(handlebars(templateData, handlebarsOptions))
                 .on('error', function(e){
                     throw new Error('Error rendering template for locale ' + locale + ': ' + e.message);
