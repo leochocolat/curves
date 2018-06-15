@@ -8,6 +8,15 @@
 
     <base href="/static/{{version}}/" />
 
+    <!--[if lt IE 10]>
+    <script>
+        var base = document.querySelector('base');
+        var href = base.getAttribute('href');
+        var origin = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+        base.setAttribute('href', origin + href);
+    </script>
+    <![endif]-->
+
     <link rel="stylesheet" href="css/main.css">
 </head>
 
