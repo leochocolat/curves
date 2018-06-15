@@ -29,7 +29,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
     gulp.watch(path.join(config.html.src, '**/*.{html,hbs}'), ['develop:html']);
     gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html']);
     gulp.watch(path.join(config.temp.src, '/**/*.{json,xml}'), ['develop:javascript-app']);
-    console.log(logSymbols.success, 'Watching... (CTRL+C to end)');
+    console.log(logSymbols.info, 'Watching... (CTRL+C to end)');
 }});
 
 /**
