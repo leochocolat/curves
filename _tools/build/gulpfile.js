@@ -29,7 +29,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
     gulp.watch(path.join(config.html.src, '**/*.{html,hbs}'), ['develop:html']);
     gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html']);
     gulp.watch(path.join(config.temp.src, '/**/*.{json,xml}'), ['develop:javascript-app']);
-    console.log(logSymbols.success, 'Watching... (CTRL+C to end)');
+    console.log(logSymbols.info, 'Watching... (CTRL+C to end)');
 }});
 
 /**
@@ -54,7 +54,14 @@ function tasks(options) {
     for (var i = 0, len = options.tasks.length; i < len; i++) {
         task = options.tasks[i];
         name = options.type + ':' + task;
-        gulp.task(name, require(path.resolve('tasks', options.type, task))(gulp, config, version));
+        
+        var paths = [path.resolve('tasks', options.type, task),  path.resolve('tasks', 'shared', task)];
+
+        paths = paths.filter(function(value) {
+            return fs.existsSync([value, '.js'].join(''));
+        });
+
+        gulp.task(name, require(paths[0])(gulp, config, version));
         tasks.push(name);
     }
 

@@ -38,7 +38,8 @@ module.exports = function(config) {
                         }                      
                     }]
                 },
-                {test: /\.glsl$/, use: 'webpack-glsl-loader'}                
+                {test: /\.glsl$/, use: 'webpack-glsl-loader'},
+                {test: /backbone\.js$/, loader: 'imports-loader?define=>false'}              
             ]
         },      
         plugins: [

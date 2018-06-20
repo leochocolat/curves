@@ -8,7 +8,8 @@
 !/public/content/generated/.gitkeep
 
 #### Builds
-/public/static/local
+/public/static/*
+/public/*.html
 
 #### Node modules
 node_modules

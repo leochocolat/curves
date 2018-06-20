@@ -2,6 +2,8 @@ const path = require('path');
 const handlebars = require('gulp-compile-handlebars');
 const fs = require('fs');
 const browserSync = require('browser-sync').get('server');
+const logSymbols = require('log-symbols');
+const helpers = require('./handlebars/helpers');
 
 
 module.exports = function(gulp, config, version) {
@@ -11,13 +13,7 @@ module.exports = function(gulp, config, version) {
         const dest = config.html.dest;        
 
         const handlebarsOptions = {
-            helpers: {
-                template: (context) => {
-                    if (!context.hash.id || !context.hash.src) return '';
-                    let templateContents = `{{> ${context.hash.src}}}`;
-                    return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
-                }
-            },
+            helpers: helpers,
             batch: [path.resolve(src)]
         };
 
@@ -28,7 +24,7 @@ module.exports = function(gulp, config, version) {
             templateData.locale = locale;
             templateData.lang = locale.replace(/^([a-z]{2})-.*/gi, '$1');
 
-            gulp.src(src + '/*.html')
+            gulp.src(src + '/**/*.html')
                 .pipe(handlebars(templateData, handlebarsOptions))
                 .on('error', function(e){
                     throw new Error('Error rendering template for locale ' + locale + ': ' + e.message);
@@ -78,6 +74,7 @@ module.exports = function(gulp, config, version) {
         //Render the master language
         renderHTML(config.lang.default_locale, Object.assign({}, getMaster(), {data: data}), dest);        
 
+        console.log(logSymbols.success, 'HTML templates succesfully rendered');
         browserSync.reload();
     };
 
