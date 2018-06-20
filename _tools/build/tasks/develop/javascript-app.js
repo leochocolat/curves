@@ -1,12 +1,9 @@
-var path = require('path');
 var webpack = require('webpack');
 var browserSync = require('browser-sync').get('server');
 const logSymbols = require('log-symbols');
 
 module.exports = function(gulp, config) {
     return function(callback) {
-        var src = config.js.src;
-        var dest = config.js.dest;
 
         var webpackConfig = require('../../webpack.config.dev.js')(config);
         webpack(webpackConfig, function(error, stats) {

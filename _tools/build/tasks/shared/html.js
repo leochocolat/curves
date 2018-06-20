@@ -3,6 +3,7 @@ const handlebars = require('gulp-compile-handlebars');
 const fs = require('fs');
 const browserSync = require('browser-sync').get('server');
 const logSymbols = require('log-symbols');
+const helpers = require('./handlebars/helpers');
 
 
 module.exports = function(gulp, config, version) {
@@ -12,13 +13,7 @@ module.exports = function(gulp, config, version) {
         const dest = config.html.dest;        
 
         const handlebarsOptions = {
-            helpers: {
-                template: (context) => {
-                    if (!context.hash.id || !context.hash.src) return '';
-                    let templateContents = `{{> ${context.hash.src}}}`;
-                    return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));
-                }
-            },
+            helpers: helpers,
             batch: [path.resolve(src)]
         };
 
