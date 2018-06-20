@@ -1,7 +1,7 @@
 const handlebars = require('gulp-compile-handlebars');
 
 const helpers = {
-    template: (context, options) => {
+    template: (context) => {
         if (!context.hash.id || !context.hash.src) return '';
         let templateContents = `{{> ${context.hash.src}}}`;        
         return new handlebars.Handlebars.SafeString(handlebars.Handlebars.compile(`<script type="text/template" id="${context.hash.id}">${templateContents}</script>`)(context.data.root));

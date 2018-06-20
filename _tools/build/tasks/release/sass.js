@@ -1,7 +1,5 @@
 var path = require('path');
 var sourcemaps = require('gulp-sourcemaps');
-var browserSync = require('browser-sync').get('server');
-var replacePath = require('gulp-replace-path');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
