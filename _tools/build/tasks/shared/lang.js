@@ -10,14 +10,6 @@ module.exports = function(gulp, config, version) {
         const src = config.lang.src;
         const dest = config.lang.dest;
 
-        // create path if not existing
-        mkdirp.sync(dest + '/', function(err) {
-            if (err) {
-                throw new Error('Coulnd\'t create destination folder: ');
-            }
-            else {}
-        });
-
         //Load in master language file!
         let masterContents = JSON.parse(fs.readFileSync(src + '/master.json'));
 
@@ -38,7 +30,21 @@ module.exports = function(gulp, config, version) {
             });
         });
 
+        function createDir(path) {
+
+            // create path if not existing
+            mkdirp.sync(path, function(err) {
+                if (err) {
+                    throw new Error('Coulnd\'t create folder: ' + path);
+                }
+                else {}
+            });
+            
+        }
+
         function writeFile(locale, dest, templateData) {
+
+            createDir(dest + '/');
 
             // remove line breaks (added by PO-editor)
             fs.writeFile(dest + '/' + locale + '.json', JSON.stringify(templateData).replace(/\\n/g, ''), function(e) {
