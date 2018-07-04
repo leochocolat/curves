@@ -19,17 +19,16 @@ module.exports = function(gulp, config, version) {
         let baseTemplateData = Object.assign({}, masterContents, {version: version});
 
         //Look for other locales files, loop through them and export json file for each
-        fs.readdir(src, function(err, items) {
-            items.forEach(function(item) {
-                if (!item.match(/\.json$/gi) || item.match(/master\.json/gi)) return;
-                let locale = item.replace('.json', '');
-                let localeContents = JSON.parse(fs.readFileSync(src + '/' + item));
+        let array = fs.readdirSync(src);
+        array.forEach(function(item) {
+            if (!item.match(/\.json$/gi) || item.match(/master\.json/gi)) return;
+            let locale = item.replace('.json', '');
+            let localeContents = JSON.parse(fs.readFileSync(src + '/' + item));
 
-                //Merge locale contents with master file, so it falls back
-                let templateData = Object.assign({}, baseTemplateData, localeContents);
+            //Merge locale contents with master file, so it falls back
+            let templateData = Object.assign({}, baseTemplateData, localeContents);
 
-                writeFile(locale, dest, templateData);
-            });
+            writeFile(locale, dest, templateData);
         });
 
         function createDir(path) {
