@@ -10,6 +10,8 @@ module.exports = function(gulp, config, version) {
         const src = config.lang.src;
         const dest = config.lang.dest;
 
+        let didWriteFiles = false;
+
         //Load in master language file!
         let masterContents = JSON.parse(fs.readFileSync(src + '/master.json'));
 
@@ -44,6 +46,8 @@ module.exports = function(gulp, config, version) {
 
         function writeFile(locale, dest, templateData) {
 
+            didWriteFiles = true;
+
             createDir(dest + '/');
 
             // remove line breaks (added by PO-editor)
@@ -53,7 +57,9 @@ module.exports = function(gulp, config, version) {
 
         }
 
-        console.log(logSymbols.success, 'Lang files succesfully written');
+        if (didWriteFiles) {
+            console.log(logSymbols.success, 'Lang files succesfully written');
+        }
 
         browserSync.reload();
 
