@@ -14,7 +14,7 @@
     "lang": {
         "default_locale" : "en-gb",
         "src": "../../_sources/lang",
-        "dest": "../../public/static/[version]/lang",        
+        "dest": "../../public/static/[version]/lang"    
     },
     "temp": {
         "src": "../../_temp",

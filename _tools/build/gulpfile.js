@@ -35,7 +35,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
 /**
  * Release tasks
  */
-tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'remove-old-releases']});
+tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'lang', 'remove-old-releases']});
 
 /**
  * Other tasks
