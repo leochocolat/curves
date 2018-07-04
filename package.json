@@ -12,7 +12,7 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-es6-promise": "^1.1.1",
     "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.18.12",    
+    "browser-sync": "^2.18.12",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean-css": "^3.5.0",
@@ -29,6 +29,7 @@
     "ip": "^1.1.5",
     "log-symbols": "^2.2.0",
     "minimist": "^1.2.0",
+    "mkdir": "0.0.2",
     "strip-debug-loader": "^1.0.0",
     "webpack": "^4.6.0",
     "webpack-glsl-loader": "^1.0.1"

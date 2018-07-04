@@ -20,14 +20,14 @@ var config = JSON.parse(substituteVersionNumber(rawConfig, version));
 /**
  * Development tasks
  */
-tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html'], callback: function() {
+tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'lang'], callback: function() {
     gulp.watch(path.join(config.assets.src, '/**/*'), ['develop:assets']);
     gulp.watch(path.join(config.sass.src, '/**/*.{sass,scss,css}'), ['develop:sass']);
     gulp.watch(path.join(config.fonts.src, '/**/*'), ['develop:fonts']);
     gulp.watch(path.join(config.data.src, '/**/*.{json,xml}'), ['develop:data', 'develop:javascript-app']);
     gulp.watch(path.join(config.js.src, '/**/*.{js,frag,vert,glsl}'), ['develop:javascript-app']);
     gulp.watch(path.join(config.html.src, '**/*.{html,hbs}'), ['develop:html']);
-    gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html']);
+    gulp.watch(path.join(config.lang.src, '**/*.json'), ['develop:html', 'develop:lang']);
     gulp.watch(path.join(config.temp.src, '/**/*.{json,xml}'), ['develop:javascript-app']);
     console.log(logSymbols.info, 'Watching... (CTRL+C to end)');
 }});
@@ -35,7 +35,7 @@ tasks({type: 'develop', sync: true, tasks: ['serve', 'assets', 'sass', 'fonts', 
 /**
  * Release tasks
  */
-tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'remove-old-releases']});
+tasks({type: 'release', sync: true, tasks: ['check-release', 'assets', 'sass', 'fonts', 'data', 'javascript-dll', 'javascript-app', 'html', 'lang', 'remove-old-releases']});
 
 /**
  * Other tasks
