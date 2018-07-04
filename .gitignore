@@ -65,4 +65,8 @@ $RECYCLE.BIN/
 *.fla
 *.swf
 
+#### Sketches
+
+sketches/js/node_modules
+
 #### Project Specific:

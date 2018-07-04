@@ -1,9 +1,3 @@
-@function rem($px) {
-    @return $px;
+@function rem($px, $base: $base-font-size) {
+    @return ($px / $base) * 1rem;
 }
-
-@function path($path) {
-    @return url($base_url + $path);
-}
-
-
