@@ -8,6 +8,12 @@
 5. Open up the _tools/build/config.json file and change the *url* property to your local url.
 6. Start building your project by running `npm run develop`
 
+## Develop and test on real devices using Browsersync
+1. Add your choosen [projectname].local.shcc.nl url to the _tools/build/config.json file.
+2. Build your project by running `npm run develop`.
+3. Open your project in Chrome ([projectname].local.shcc.nl).
+4. In the console you will find the IP address and port for your site. (Browsersync active on [IP])
+
 ## Features
 * Basic project setup using SuperheroJS framework.
 * Gulp based build system.
