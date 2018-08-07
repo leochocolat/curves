@@ -5,9 +5,9 @@
 2. Add this boilerplate as a remote by running `git remote add boilerplate-fe git@codebasehq.com:shcc/shcc-boilerplate/v3-fe.git`
 3. Pull in the boilerplate code by running `git pull boilerplate-fe master`
 4. Setup Gitflow by running `git flow init`
-4. Install all the node modules by running `npm i`
-5. Open up the _tools/build/config.json file and change the *url* property to your local url.
-6. Start building your project by running `npm run develop`
+5. Install all the node modules by running `npm i`
+6. Open up the _tools/build/config.json file and change the *url* property to your local url.
+7. Start building your project by running `npm run develop`
 
 ## Develop and test on real devices using Browsersync
 1. Add your choosen [projectname].local.shcc.nl url to the _tools/build/config.json file.
