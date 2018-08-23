@@ -5,31 +5,31 @@ const browserSync = require('browser-sync').get('server');
 const logSymbols = require('log-symbols');
 const helpers = require('./handlebars/helpers');
 
-
 module.exports = function(gulp, config, version) {
+
     return function() {
-        
+
         const src = config.html.src;
-        const dest = config.html.dest;        
+        const dest = config.html.dest;
 
         const handlebarsOptions = {
-            helpers: helpers,
+            helpers: helpers(config),
             batch: [path.resolve(src)]
         };
 
         function renderHTML(locale, templateData, dest) { //TODO: rename dest
 
             //Last variables to add
-            templateData.version = version; 
+            templateData.version = version;
             templateData.locale = locale;
             templateData.lang = locale.replace(/^([a-z]{2})-.*/gi, '$1');
 
             gulp.src(src + '/**/*.html')
                 .pipe(handlebars(templateData, handlebarsOptions))
                 .on('error', function(e){
-                    throw new Error('Error rendering template for locale ' + locale + ': ' + e.message);
+                    console.error(logSymbols.error, 'Error rendering template for locale ' + locale + ': ' + e.message);
                 })
-                .pipe(gulp.dest(dest)); 
+                .pipe(gulp.dest(dest));
         }
 
         function getMaster() {
@@ -42,7 +42,7 @@ module.exports = function(gulp, config, version) {
             files.forEach((file) => {
                 if (!file.match(/\.json$/gi) || file.match(/master\.json/gi)) return;
                 let locale = file.replace('.json', '');
-                let jsonData = JSON.parse(fs.readFileSync(config.lang.src + '/' + file));                                
+                let jsonData = JSON.parse(fs.readFileSync(config.lang.src + '/' + file));
                 translations[locale] = Object.assign({}, master, jsonData);
             });
 
@@ -55,7 +55,7 @@ module.exports = function(gulp, config, version) {
             files.forEach((file) => {
                 if (!file.match(/\.json$/gi)) return;
                 let name = file.replace('.json', '');
-                let jsonData = JSON.parse(fs.readFileSync(config.data.src + '/' + file));                
+                let jsonData = JSON.parse(fs.readFileSync(config.data.src + '/' + file));
                 data[name] = jsonData;
             });
 
@@ -64,7 +64,7 @@ module.exports = function(gulp, config, version) {
 
         const master = getMaster();
         const translations = getTranslations(master);
-        const data = getData();       
+        const data = getData();
 
         //Render translations
         Object.keys(translations).forEach((locale) => {
@@ -72,7 +72,7 @@ module.exports = function(gulp, config, version) {
         });
 
         //Render the master language
-        renderHTML(config.lang.default_locale, Object.assign({}, getMaster(), {data: data}), dest);        
+        renderHTML(config.lang.default_locale, Object.assign({}, getMaster(), {data: data}), dest);
 
         console.log(logSymbols.success, 'HTML templates succesfully rendered');
         browserSync.reload();
