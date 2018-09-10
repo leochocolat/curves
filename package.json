@@ -30,7 +30,7 @@
     "log-symbols": "^2.2.0",
     "minimist": "^1.2.0",
     "mkdir": "0.0.2",
-    "strip-debug-loader": "^1.0.0",
+    "strip-loader": "^0.1.2",
     "webpack": "^4.6.0",
     "webpack-glsl-loader": "^1.0.1"
   },

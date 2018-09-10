@@ -39,7 +39,7 @@ module.exports = function(config) {
                     }]  
                 },
                 {test: /\.glsl$/, use: 'webpack-glsl-loader'}
-            ],
+            ]
         },
         devtool: 'cheap-source-map',        
         plugins: [
