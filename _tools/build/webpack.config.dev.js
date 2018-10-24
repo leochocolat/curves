@@ -30,7 +30,7 @@ module.exports = function(config) {
                         options: {
                             babelrc: false,
                             presets: [
-                                'env'
+                                ['env', {modules: false}]
                             ],
                             plugins: [
                                 'es6-promise'
