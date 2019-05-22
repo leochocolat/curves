@@ -5,7 +5,6 @@ export default Superhero.View.extend({
     template: 'pages/home',
 
     ui: {
-        title: '.js-title'
     },
 
     initialize() {
