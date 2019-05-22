@@ -7,10 +7,8 @@ export default Superhero.Router.extend({
         '': '_home',
     },
 
-    _home: function() {
-
+    _home() {
         Superhero.RegionManager.get('main').show(HomeView);
-
     }
 
 });

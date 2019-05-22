@@ -28,16 +28,22 @@ module.exports = function(config) {
                         options: {
                             babelrc: false,
                             presets: [
-                                ['env', {modules: false}]
+                                ['env', { modules: false }]
                             ],
                             plugins: [
                                 'es6-promise'
                             ]
-                        }                      
-                    }] 
+                        }
+                    }]
                 },
-                {test: /\.glsl$/, use: 'webpack-glsl-loader'},
-                {test: /\.js$/, loader: 'strip-loader?strip[]=console.log,strip[]=alert'}
+                {
+                    test: /\.glsl$/,
+                    use: 'webpack-glsl-loader'
+                },
+                {
+                    test: /\.js$/,
+                    loader: 'strip-loader?strip[]=console.log,strip[]=alert'
+                }
             ],
         },
         plugins: [

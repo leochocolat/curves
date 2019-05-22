@@ -35,13 +35,19 @@ module.exports = function(config) {
                             plugins: [
                                 'es6-promise'
                             ]
-                        }                      
+                        }
                     }]
                 },
-                {test: /\.glsl$/, use: 'webpack-glsl-loader'},
-                {test: /backbone\.js$/, loader: 'imports-loader?define=>false'}
+                {
+                    test: /\.glsl$/,
+                    use: 'webpack-glsl-loader'
+                },
+                {
+                    test: /backbone\.js$/,
+                    loader: 'imports-loader?define=>false'
+                }
             ]
-        },          
+        },
         plugins: [
             new webpack.DllPlugin({
                 name: '[name]',
