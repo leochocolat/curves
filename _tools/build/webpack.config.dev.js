@@ -30,18 +30,21 @@ module.exports = function(config) {
                         options: {
                             babelrc: false,
                             presets: [
-                                ['env', {modules: false}]
+                                ['env', { modules: false }]
                             ],
                             plugins: [
                                 'es6-promise'
                             ]
-                        }                      
-                    }]  
+                        }
+                    }]
                 },
-                {test: /\.glsl$/, use: 'webpack-glsl-loader'}
+                {
+                    test: /\.glsl$/,
+                    use: 'webpack-glsl-loader'
+                }
             ]
         },
-        devtool: 'cheap-source-map',        
+        devtool: 'cheap-source-map',
         plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,
