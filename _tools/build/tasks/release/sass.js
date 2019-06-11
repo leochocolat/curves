@@ -13,8 +13,8 @@ module.exports = function(gulp, config) {
         gulp.src(path.join(src, config.sass.entry))
             .pipe(sourcemaps.init())
             .pipe(plumber())
-            .pipe(sass({outputStyle: 'compressed'}))            
-            .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 11', 'safari >= 8', 'ios 10', 'android 4']}))
-            .pipe(gulp.dest(dest));            
+            .pipe(sass({outputStyle: 'compressed'}))
+            .pipe(autoprefixer())
+            .pipe(gulp.dest(dest));
     };
 };
