@@ -17,7 +17,7 @@ module.exports = function(gulp, config) {
             .pipe(plumber())
             .pipe(sass())
             .pipe(sourcemaps.write())
-            .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 11', 'safari >= 8', 'ios 10', 'android 4']}))
+            .pipe(autoprefixer())
             .pipe(gulp.dest(dest))
             .pipe(browserSync.stream());
 
